@@ -1,0 +1,19 @@
+
+class Solution {
+    minimumSum(arr, change, k) {
+      let n=arr.length;
+      let d= new Array(n);
+      let sum=0;
+      for(let i=0;i<arr.length;i++){
+          d[i] = change[i]-arr[i];
+      }
+      d.sort((a,b)=>a-b);
+      for(let i=0;i<arr.length;i++){
+          sum+=arr[i];
+      }
+      for(let i=0;i<k;i++){
+          sum +=d[i];
+      }
+      return sum;
+    }
+}
