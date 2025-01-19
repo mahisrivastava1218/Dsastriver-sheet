@@ -1,0 +1,33 @@
+  var isIsomorphic = function(s, t) {
+       if(s.length!==t.length) return false;
+        let mapS= new Map();
+        let mapT= new Map();
+        for(let i=0;i<s.length;i++){
+            if((mapS.has(s[i]) && mapS.get(s[i])!==t[i])||(mapT.has(t[i]) && mapT.get(t[i])!==s[i])){
+                return false;
+            }
+                mapS.set(s[i],t[i]);
+                 mapT.set(t[i],s[i]);
+        }
+        return true;
+    };
+
+    //tc-O(n) sc-O(n);
+    var isIsomorphic = function(s, t) {
+        if (s.length !== t.length) return false;
+       let mapST = new Array(256).fill(-1);
+       let mapTS = new Array(256).fill(-1);
+       for(let i=0;i<s.length;i++){
+        let charS = s.charCodeAt(i);
+        let charT = t.charCodeAt(i);
+          if((mapST[charS]!==-1 && mapST[charS] !== charT)||(mapTS[charT]!==-1 && mapTS[charT] !== charS)){
+          return false;
+         }
+        mapST[charS]=charT;
+        mapTS[charT]=charS;
+       }
+       return true;
+    };
+    //tc-O(n) sc-O(26)
+    console.log(isIsomorphic('badc','baba'));
+    console.log(isIsomorphic('paper','title'));
