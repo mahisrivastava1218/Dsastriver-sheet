@@ -1,0 +1,34 @@
+var frequencySort = function(s) {
+    const map=new Map();
+    for(let i=0;i<s.length;i++){
+        map.set(s[i],(map.get(s[i])||0)+1);
+    }
+    const sorted = Array.from(map.entries()).sort((a,b)=>b[1]-a[1]); //making arr in sorted form inserting map interies in [key,val then sort decreasing by val
+    let newstr="";
+    for(let [key,val] of sorted){
+        newstr += key.repeat(val); 
+    }
+    return newstr;
+};
+//TC-O(nlogn) SC-O(n)
+
+//BUCKET SORT ALGORITHM
+
+var frequencySort = function(s) {
+    const map=new Map();
+    for(let i=0;i<s.length;i++){
+        map.set(s[i],(map.get(s[i])||0)+1);
+    }
+    const buckets = Array(s.length+1).fill(null).map(()=>[]); //bucket is new arr of s length+1 where value is null
+    for(let [char,freq] of map.entries()){
+        buckets[freq].push(char); //push val by getting freq of val
+    }
+    let newstr="";
+    for(let freq=s.length;freq>0;freq--){
+        for(let char of buckets[freq]){
+        newstr += char.repeat(freq); 
+        }
+    }
+    return newstr;
+};
+////TC-O(n) SC-O(n)
