@@ -1,0 +1,27 @@
+/
+ //case1-" "
+ //case2-"+"or"-" count*sign
+ //case3- i will go number 0 to 9
+ //"__-12349043cdef"-> 
+var myAtoi = function(s) {
+    let ans=0;
+    let symbol=1;
+    let count=0;
+    let i=0;
+        while(i<s.length && s[i]===' ') i++;
+        if(i<s.length && (s[i]==='-'|| s[i]==='+')){
+         symbol = s[i]==='-'? -1 : 1;
+         i++;
+        }
+        while(i<s.length && s[i]>='0' && s[i]<='9'){
+         count = count * 10 + Number(s[i]); 
+         i++;
+        }
+        count *= symbol;
+       const INT_MIN=-(2**31);
+       const INT_MAX= (2**31-1);
+      console.log(INT_MAX);
+      if(count<INT_MIN) return INT_MIN;
+      if(count>INT_MAX) return INT_MAX;
+      return count;
+};
