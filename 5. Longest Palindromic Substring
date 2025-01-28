@@ -26,3 +26,4 @@ var longestPalindrome = function (s) {
     return s.slice(start, start + maxLength);
 };
 console.log(longestPalindrome('babad'));
+//time complexity-O(n^2) space complexity-O(1)
