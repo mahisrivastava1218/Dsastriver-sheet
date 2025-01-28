@@ -1,0 +1,48 @@
+class Solution {
+    countSubstr(s, k) {
+        let count=0;
+        for(let i=0;i<s.length;i++){
+           const set=new Set();
+            for(let j=i;j<s.length;j++){
+               set.add(s[j]);
+               if(set.size === k){
+                   count++;
+               }else if(set.size>k){
+                   break;
+               }
+            }
+        }
+        return count;
+    }
+}
+//Bruite force time complexity-O(n^2) space complexity-O(k)
+
+class Solution {
+    countSubstr(s, k) {
+        let count = 0;
+        let start1 = 0, start2 = 0; 
+        const map1 = new Map(); 
+        const map2 = new Map();
+
+        for (let end = 0; end < s.length; end++) {
+            map1.set(s[end], (map1.get(s[end]) || 0) + 1);
+            map2.set(s[end], (map2.get(s[end]) || 0) + 1);
+            while (map1.size > k) {
+                map1.set(s[start1], map1.get(s[start1]) - 1);
+                if (map1.get(s[start1]) === 0) map1.delete(s[start1]);
+                start1++;
+            }
+
+            while (map2.size > k - 1) {
+                map2.set(s[start2], map2.get(s[start2]) - 1);
+                if (map2.get(s[start2]) === 0) map2.delete(s[start2]);
+                start2++;
+            }
+            count += start2-start1
+        }
+
+        return count;
+    }
+   
+}
+//tc-O(n) sc-O(n) 
