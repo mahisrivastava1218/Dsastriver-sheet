@@ -1,0 +1,17 @@
+var beautySum = function(s) {
+      let count = 0;
+    for (let i = 0; i < s.length; i++) {
+        let charFreq = new Map();
+        for (let j = i; j < s.length; j++) {
+            charFreq.set(s[j], (charFreq.get(s[j]) || 0) + 1);
+             let min = Infinity, max = -Infinity;
+             for (let freq of charFreq.values()) {
+                min = Math.min(min, freq);
+                max = Math.max(max, freq);
+            }
+
+            count += (max - min);
+        }
+    }
+    return count;
+};
