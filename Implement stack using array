@@ -1,0 +1,15 @@
+MyStack.prototype.push = function(x) {
+    // Simply push the element to the array
+    this.arr.push(x);
+}
+
+MyStack.prototype.pop = function() {
+    if (this.arr.length === 0) {
+        return -1;
+    }
+    
+    // Return the top element
+    const top =  this.arr.pop();
+    if(top) return top;
+    else return -1;
+}
