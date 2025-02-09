@@ -1,0 +1,26 @@
+var countGoodNumbers = function(n) {
+    const mod=BigInt(1000000007);
+    
+    // Helper function for modular exponentiation
+    const powerMod = (base, exponent) => {
+        base = BigInt(base);
+        exponent = BigInt(exponent);
+        let result = 1n;
+        
+        while (exponent > 0n) {
+            if (exponent % 2n === 1n) {
+                result = (result * base) % mod;
+            }
+            base = (base * base) % mod;
+            exponent = exponent / 2n;
+        }
+        
+        return result;
+    };
+    
+    const even = BigInt(Math.ceil(n / 2));  // Number of even positions
+    const odd = BigInt(Math.floor(n / 2));  // Number of odd positions
+    
+    const result = (powerMod(5n, even) * powerMod(4n, odd)) % mod;
+    return Number(result);
+};
